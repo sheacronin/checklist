@@ -24,10 +24,7 @@ header h1 {
 }
 
 main {
-    background-color: #ffffff90;
-    margin: 20px;
     padding: 20px;
-    border-radius: 10px;
 }
 
 footer {
@@ -38,4 +35,8 @@ footer {
     bottom: 0;
     width: 100vw;
     text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
 }

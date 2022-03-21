@@ -1,4 +1,5 @@
 import './App.css';
+import TaskList from './components/TaskList';
 
 function App() {
     return (
@@ -6,7 +7,9 @@ function App() {
             <header>
                 <h1>Checklist</h1>
             </header>
-            <main>Hello World</main>
+            <main>
+                <TaskList />
+            </main>
             <footer>App made by Shea Cronin</footer>
         </div>
     );
