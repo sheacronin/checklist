@@ -12,6 +12,15 @@ function Task({ task, setTasks }) {
         });
     }
 
+    function deleteTask() {
+        setTasks((prevTasks) => {
+            const newTasks = [...prevTasks];
+            const i = newTasks.indexOf(task);
+            newTasks.splice(i, 1);
+            return newTasks;
+        });
+    }
+
     return (
         <li className={task.isCompleted ? 'task completed-task' : 'task'}>
             <button
@@ -19,6 +28,7 @@ function Task({ task, setTasks }) {
                 onClick={markTaskAsCompleted}
             ></button>
             {task.text}
+            <button className="delete-task-btn" onClick={deleteTask}></button>
         </li>
     );
 }
