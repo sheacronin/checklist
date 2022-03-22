@@ -13,13 +13,13 @@ function Task({ task, setTasks }) {
     }
 
     return (
-        <article className={task.isCompleted ? 'task completed-task' : 'task'}>
+        <li className={task.isCompleted ? 'task completed-task' : 'task'}>
             <button
                 className="complete-task-btn"
                 onClick={markTaskAsCompleted}
             ></button>
             {task.text}
-        </article>
+        </li>
     );
 }
 

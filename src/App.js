@@ -1,6 +1,5 @@
 import './App.css';
 import TaskList from './components/TaskList';
-import TaskInput from './components/TaskInput';
 
 function App() {
     return (
@@ -10,7 +9,6 @@ function App() {
             </header>
             <main>
                 <TaskList />
-                <TaskInput />
             </main>
             <footer>App made by Shea Cronin</footer>
         </div>
