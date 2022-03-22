@@ -7,6 +7,11 @@
     align-items: center;
 }
 
+.completed-task {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
 .complete-task-btn {
     width: 30px;
     height: 30px;
@@ -14,6 +19,19 @@
     border-radius: 50%;
     border: none;
     background-color: white;
+    position: relative;
+}
+
+.completed-task .complete-task-btn::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #5c6bc0;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border-radius: 50%;
 }
 
 .complete-task-btn:hover {
