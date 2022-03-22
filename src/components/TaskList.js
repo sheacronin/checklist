@@ -1,6 +1,6 @@
 import Task from './Task';
 import '../styles/TaskList.css';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const tasksData = [
     { id: 1, text: 'Take out trash', isCompleted: false },
@@ -36,9 +36,11 @@ function TaskList() {
         }
     }
 
+    const memoizedOrderedTasks = useMemo(() => orderTasks(tasks), [tasks]);
+
     return (
         <section className="task-list">
-            {orderTasks(tasks).map((task) => (
+            {memoizedOrderedTasks.map((task) => (
                 <Task key={task.id} task={task} setTasks={setTasks} />
             ))}
         </section>
