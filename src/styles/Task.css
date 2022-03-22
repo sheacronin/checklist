@@ -23,6 +23,18 @@
     position: relative;
 }
 
+@keyframes pop-in {
+    from {
+        transform: translate(50%, -50%) scale(0);
+    }
+    50% {
+        transform: translate(50%, -50%) scale(110%);
+    }
+    to {
+        transform: translate(50%, -50%) scale(100%);
+    }
+}
+
 .completed-task .complete-task-btn::after {
     content: '';
     width: 20px;
@@ -33,6 +45,7 @@
     right: 50%;
     transform: translate(50%, -50%);
     border-radius: 50%;
+    animation: pop-in 300ms ease-in-out;
 }
 
 .complete-task-btn:hover {
