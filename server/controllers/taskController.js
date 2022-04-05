@@ -52,7 +52,7 @@ exports.deleteTask = [
 
         // Remove task from User's array
         User.findByIdAndUpdate(
-            req.cookies.currentUser.id,
+            req.body.userId,
             { $pull: { tasks: taskId } },
             { new: true },
             (err, theUser) => {

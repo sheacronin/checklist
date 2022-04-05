@@ -56,7 +56,13 @@ function TaskList({ user, token }) {
             {user && <h1>{user.username}'s Tasks</h1>}
             <ul>
                 {memoizedOrderedTasks.map((task) => (
-                    <Task key={task.id} task={task} setTasks={setTasks} />
+                    <Task
+                        key={task.id}
+                        task={task}
+                        setTasks={setTasks}
+                        token={token}
+                        user={user}
+                    />
                 ))}
             </ul>
             <TaskInput setTasks={setTasks} token={token} user={user} />
