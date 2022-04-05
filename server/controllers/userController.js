@@ -43,7 +43,6 @@ exports.createUser = [
 
             const user = new User({
                 username: req.body.username,
-                displayName: req.body.displayName,
                 password: hashedPassword,
             });
 
@@ -67,7 +66,6 @@ exports.createUser = [
 
                                 res.json({
                                     username: user.username,
-                                    displayName: user.displayName,
                                 });
                             });
                         }
