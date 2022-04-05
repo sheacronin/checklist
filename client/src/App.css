@@ -20,6 +20,8 @@ header {
     position: fixed;
     width: 100vw;
     z-index: 1;
+    display: flex;
+    justify-content: space-between;
 }
 
 header h1 {
@@ -28,6 +30,11 @@ header h1 {
 
 main {
     padding: 20px;
+}
+
+main > * {
+    max-width: 600px;
+    margin: 80px auto 200px auto;
 }
 
 footer {

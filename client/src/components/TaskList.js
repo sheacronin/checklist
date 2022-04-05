@@ -1,5 +1,4 @@
 import Task from './Task';
-import '../styles/TaskList.css';
 import { useMemo, useState } from 'react';
 import TaskInput from './TaskInput';
 

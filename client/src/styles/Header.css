@@ -1,0 +1,22 @@
+header a {
+    color: white;
+    text-decoration: none;
+    transition: 200ms ease-in-out color;
+}
+
+header a:hover {
+    color: #ce93d8;
+    text-decoration: underline;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
