@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-function Login({ setUser }) {
+function Login({ setUser, setToken }) {
     const navigate = useNavigate();
 
     async function handleSubmission(e) {
@@ -20,6 +20,7 @@ function Login({ setUser }) {
 
         if (res.status === 200) {
             setUser(data.user);
+            setToken(data.token);
             navigate('/');
         }
     }

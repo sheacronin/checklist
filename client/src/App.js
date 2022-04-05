@@ -8,16 +8,22 @@ import { useState } from 'react';
 
 function App() {
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState('');
 
     return (
         <div>
             <Header />
             <main>
                 <Routes>
-                    <Route path="/" element={<TaskList user={user} />} />
+                    <Route
+                        path="/"
+                        element={<TaskList user={user} token={token} />}
+                    />
                     <Route
                         path="/login"
-                        element={<Login setUser={setUser} />}
+                        element={
+                            <Login setUser={setUser} setToken={setToken} />
+                        }
                     />
                     <Route path="/signup" element={<SignUp />} />
                 </Routes>

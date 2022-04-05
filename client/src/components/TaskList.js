@@ -1,5 +1,5 @@
 import Task from './Task';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import TaskInput from './TaskInput';
 
 const tasksData = [
@@ -9,7 +9,20 @@ const tasksData = [
     { id: 4, text: 'Clean bathroom', isCompleted: false },
 ];
 
-function TaskList({ user }) {
+function TaskList({ user, token }) {
+    useEffect(() => {
+        if (user !== null) {
+            fetchTasks().then((tasks) => setTasks(tasks));
+        }
+
+        async function fetchTasks() {
+            const res = await fetch(`http://localhost:3001/users/${user.id}`);
+            const data = await res.json();
+            console.log(data);
+            return data.user.tasks;
+        }
+    }, [user]);
+
     const [tasks, setTasks] = useState(tasksData);
 
     function orderTasks(tasks) {
@@ -40,13 +53,13 @@ function TaskList({ user }) {
 
     return (
         <section className="task-list">
-            {user && <h1>{user.username}</h1>}
+            {user && <h1>{user.username}'s Tasks</h1>}
             <ul>
                 {memoizedOrderedTasks.map((task) => (
                     <Task key={task.id} task={task} setTasks={setTasks} />
                 ))}
             </ul>
-            <TaskInput setTasks={setTasks} />
+            <TaskInput setTasks={setTasks} token={token} user={user} />
         </section>
     );
 }

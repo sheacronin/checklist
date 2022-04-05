@@ -30,9 +30,12 @@ exports.createTask = [
 
                 // Add task to current user
                 User.findByIdAndUpdate(
-                    req.cookies.currentUser.id,
+                    req.body.userId,
                     { $push: { tasks: task._id } },
-                    { new: true }
+                    { new: true },
+                    (err, theUser) => {
+                        if (err) return next(err);
+                    }
                 );
 
                 res.json({ task });

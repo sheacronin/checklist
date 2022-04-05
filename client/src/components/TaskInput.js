@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import '../styles/TaskInput.css';
 
-function TaskInput({ setTasks }) {
+function TaskInput({ setTasks, token, user }) {
     const [newTask, setNewTask] = useState('');
 
     function onTaskChange(e) {
         setNewTask(e.target.value);
     }
 
-    function onTaskSubmit(e) {
+    async function onTaskSubmit(e) {
         e.preventDefault();
+
+        const data = await postTask();
+        console.log(data);
 
         setTasks((prevTasks) => {
             const taskToAdd = {
@@ -22,6 +25,25 @@ function TaskInput({ setTasks }) {
         });
 
         setNewTask('');
+    }
+
+    async function postTask() {
+        console.log(token);
+        console.log(user.id);
+        const res = await fetch('http://localhost:3001/tasks/', {
+            method: 'POST',
+            body: JSON.stringify({
+                text: newTask,
+                userId: user.id,
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        console.log(res);
+        const data = await res.json();
+        return data;
     }
 
     return (

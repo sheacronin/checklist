@@ -74,6 +74,14 @@ main > * {
     font-weight: bold;
 }
 
+.task-list h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 footer {
     padding: 20px;
     background-color: #575a9e;
