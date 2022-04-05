@@ -37,7 +37,7 @@ main > * {
     margin: 80px auto 200px auto;
 }
 
-form {
+.auth-form {
     background-color: #ffffff90;
     padding: 20px;
     border-radius: 10px;
@@ -58,7 +58,7 @@ form {
     border: none;
 }
 
-form button {
+.auth-form button {
     justify-self: center;
     width: 50%;
     padding: 10px;
@@ -69,7 +69,7 @@ form button {
     background-color: #47436d;
 }
 
-form button:hover {
+.auth-form button:hover {
     background-color: #575a9e;
     font-weight: bold;
 }

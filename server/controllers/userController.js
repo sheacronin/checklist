@@ -95,7 +95,10 @@ exports.loginUser = (req, res, next) => {
             // of user object and return it in the response
 
             const token = jwt.sign(user.toJSON(), process.env.SECRET_KEY);
-            return res.json({ user, token });
+            return res.json({
+                user: { id: user._id, username: user.username },
+                token,
+            });
         });
     })(req, res);
 };

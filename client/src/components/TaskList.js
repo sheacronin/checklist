@@ -9,7 +9,7 @@ const tasksData = [
     { id: 4, text: 'Clean bathroom', isCompleted: false },
 ];
 
-function TaskList() {
+function TaskList({ user }) {
     const [tasks, setTasks] = useState(tasksData);
 
     function orderTasks(tasks) {
@@ -40,6 +40,7 @@ function TaskList() {
 
     return (
         <section className="task-list">
+            {user && <h1>{user.username}</h1>}
             <ul>
                 {memoizedOrderedTasks.map((task) => (
                     <Task key={task.id} task={task} setTasks={setTasks} />
