@@ -1,7 +1,9 @@
 import '../styles/Task.css';
 
 function Task({ task, setTasks, token, user }) {
-    function markTaskAsCompleted() {
+    function toggleTaskCompleted() {
+        putToggleTaskCompleted();
+
         setTasks((prevTasks) => {
             const newTasks = [...prevTasks];
             const i = newTasks.indexOf(task);
@@ -10,6 +12,21 @@ function Task({ task, setTasks, token, user }) {
             newTasks[i] = taskToChange;
             return newTasks;
         });
+    }
+
+    async function putToggleTaskCompleted() {
+        const res = await fetch(
+            `http://localhost:3001/tasks/${task._id}/toggle-complete`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        const data = await res.json();
+        console.log(data);
     }
 
     async function deleteTask() {
@@ -41,7 +58,7 @@ function Task({ task, setTasks, token, user }) {
         <li className={task.isCompleted ? 'task completed-task' : 'task'}>
             <button
                 className="complete-task-btn"
-                onClick={markTaskAsCompleted}
+                onClick={toggleTaskCompleted}
             ></button>
             {task.text}
             <button className="delete-task-btn" onClick={deleteTask}></button>

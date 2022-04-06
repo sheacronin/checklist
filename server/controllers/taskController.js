@@ -69,3 +69,23 @@ exports.deleteTask = [
         });
     },
 ];
+
+exports.toggleTaskComplete = [
+    passport.authenticate('jwt', { session: false }),
+
+    (req, res, next) => {
+        const { taskId } = req.params;
+
+        Task.findByIdAndUpdate(
+            taskId,
+            [{ $set: { isCompleted: { $eq: ['$isCompleted', false] } } }],
+            { new: true },
+            (err, theTask) => {
+                if (err) return next(err);
+                console.log(theTask);
+
+                res.json({ task: theTask });
+            }
+        );
+    },
+];
