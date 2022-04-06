@@ -4,6 +4,7 @@ import TaskList from './components/TaskList';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Header from './components/Header';
+import Welcome from './components/Welcome';
 import { useState } from 'react';
 
 function App() {
@@ -12,12 +13,18 @@ function App() {
 
     return (
         <div>
-            <Header />
+            <Header user={user} setUser={setUser} setToken={setToken} />
             <main>
                 <Routes>
                     <Route
                         path="/"
-                        element={<TaskList user={user} token={token} />}
+                        element={
+                            user === null ? (
+                                <Welcome />
+                            ) : (
+                                <TaskList user={user} token={token} />
+                            )
+                        }
                     />
                     <Route
                         path="/login"

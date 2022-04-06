@@ -2,13 +2,6 @@ import Task from './Task';
 import { useEffect, useMemo, useState } from 'react';
 import TaskInput from './TaskInput';
 
-const tasksData = [
-    { id: 1, text: 'Take out trash', isCompleted: false },
-    { id: 2, text: 'Do laundry', isCompleted: false },
-    { id: 3, text: 'Grocery shopping', isCompleted: true },
-    { id: 4, text: 'Clean bathroom', isCompleted: false },
-];
-
 function TaskList({ user, token }) {
     useEffect(() => {
         if (user !== null) {
@@ -23,7 +16,7 @@ function TaskList({ user, token }) {
         }
     }, [user]);
 
-    const [tasks, setTasks] = useState(tasksData);
+    const [tasks, setTasks] = useState([]);
 
     function orderTasks(tasks) {
         const alphabeticalTasks = orderTasksAlphabetically();
@@ -57,7 +50,7 @@ function TaskList({ user, token }) {
             <ul>
                 {memoizedOrderedTasks.map((task) => (
                     <Task
-                        key={task.id}
+                        key={task._id}
                         task={task}
                         setTasks={setTasks}
                         token={token}

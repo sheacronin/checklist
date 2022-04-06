@@ -1,0 +1,18 @@
+.welcome {
+    background-color: #ffffff90;
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.welcome a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #ad62bb;
+}
+
+.welcome a:hover {
+    text-decoration: underline;
+}

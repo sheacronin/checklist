@@ -1,3 +1,20 @@
+header {
+    background-color: #47436d;
+    padding: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    position: fixed;
+    width: 100vw;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 40px;
+}
+
 header a {
     color: white;
     text-decoration: none;
@@ -19,4 +36,28 @@ nav ul {
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+nav ul button {
+    font: inherit;
+    border: none;
+    background: none;
+    color: white;
+    text-transform: uppercase;
+    transition: 200ms ease-in-out color;
+}
+
+nav ul button:hover {
+    color: #ce93d8;
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    header h1 {
+        font-size: 36px;
+    }
+
+    nav {
+        font-size: 16px;
+    }
 }
