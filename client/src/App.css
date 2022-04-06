@@ -87,6 +87,14 @@ footer {
     text-align: center;
 }
 
+footer a {
+    color: white;
+}
+
+footer a:hover {
+    color: #ce93d8;
+}
+
 button:hover {
     cursor: pointer;
 }

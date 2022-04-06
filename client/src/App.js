@@ -35,7 +35,10 @@ function App() {
                     <Route path="/signup" element={<SignUp />} />
                 </Routes>
             </main>
-            <footer>App made by Shea Cronin</footer>
+            <footer>
+                App made by{' '}
+                <a href="https://sheacronin.github.io/">Shea Cronin</a>
+            </footer>
         </div>
     );
 }

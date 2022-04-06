@@ -55,7 +55,7 @@ function Task({ task, setTasks, token, user }) {
                 className="complete-task-btn"
                 onClick={toggleTaskCompleted}
             ></button>
-            {task.text}
+            <span dangerouslySetInnerHTML={{ __html: task.text }} />
             <button className="delete-task-btn" onClick={deleteTask}></button>
         </li>
     );

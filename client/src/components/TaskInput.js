@@ -12,14 +12,12 @@ function TaskInput({ setTasks, token, user }) {
         e.preventDefault();
 
         const data = await postTask();
-        console.log(data);
 
         setTasks((prevTasks) => {
             const taskToAdd = {
-                // This is a tempory solution to unique ids while using dummy data
-                id: Math.random(),
-                text: newTask,
-                isCompleted: false,
+                id: data.task._id,
+                text: data.task.text,
+                isCompleted: data.task.isCompleted,
             };
             return [...prevTasks, taskToAdd];
         });
@@ -28,8 +26,6 @@ function TaskInput({ setTasks, token, user }) {
     }
 
     async function postTask() {
-        console.log(token);
-        console.log(user.id);
         const res = await fetch('http://localhost:3001/tasks/', {
             method: 'POST',
             body: JSON.stringify({
@@ -41,7 +37,6 @@ function TaskInput({ setTasks, token, user }) {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log(res);
         const data = await res.json();
         return data;
     }
