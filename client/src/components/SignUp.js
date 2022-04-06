@@ -1,17 +1,24 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function SignUp() {
     let navigate = useNavigate();
+    const [errors, setErrors] = useState([]);
 
-    function handleSubmission(e) {
+    async function handleSubmission(e) {
         e.preventDefault();
+        setErrors([]);
+
         const { username, password, confirmPassword } = e.target.elements;
         if (password.value !== confirmPassword.value) {
-            console.log('Your passwords do not match!');
+            setErrors((prevErrors) => [
+                ...prevErrors,
+                'Your passwords do not match',
+            ]);
             return;
         }
 
-        fetch('http://localhost:3001/users/', {
+        const res = await fetch('http://localhost:3001/users/', {
             method: 'POST',
             body: JSON.stringify({
                 username: username.value,
@@ -21,7 +28,12 @@ function SignUp() {
             headers: { 'Content-Type': 'application/json' },
         });
 
-        navigate('/login');
+        if (res.status === 200) {
+            navigate('/login');
+        } else {
+            const data = await res.json();
+            setErrors((prevErrors) => [...prevErrors, data.message]);
+        }
     }
 
     return (
@@ -45,6 +57,13 @@ function SignUp() {
                 </div>
                 <button type="submit">Sign Up</button>
             </form>
+            {errors.length > 0 && (
+                <section className="errors">
+                    {errors.map((error) => (
+                        <div key={error}>{error}</div>
+                    ))}
+                </section>
+            )}
         </article>
     );
 }

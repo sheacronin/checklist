@@ -11,7 +11,6 @@ function TaskList({ user, token }) {
         async function fetchTasks() {
             const res = await fetch(`http://localhost:3001/users/${user.id}`);
             const data = await res.json();
-            console.log(data);
             return data.user.tasks;
         }
     }, [user]);
@@ -46,7 +45,7 @@ function TaskList({ user, token }) {
 
     return (
         <section className="task-list">
-            {user && <h1>{user.username}'s Tasks</h1>}
+            {user && <h2>{user.username}'s tasks</h2>}
             <ul>
                 {memoizedOrderedTasks.map((task) => (
                     <Task

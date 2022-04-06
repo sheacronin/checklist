@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Login({ setUser, setToken }) {
     const navigate = useNavigate();
+    const [errors, setErrors] = useState([]);
 
     async function handleSubmission(e) {
         e.preventDefault();
+        setErrors([]);
         const { username, password } = e.target.elements;
 
         const res = await fetch('http://localhost:3001/users/login', {
@@ -16,12 +19,13 @@ function Login({ setUser, setToken }) {
             headers: { 'Content-Type': 'application/json' },
         });
         const data = await res.json();
-        console.log(data);
 
         if (res.status === 200) {
             setUser(data.user);
             setToken(data.token);
             navigate('/');
+        } else {
+            setErrors((prevErrors) => [...prevErrors, data.info.message]);
         }
     }
 
@@ -38,6 +42,13 @@ function Login({ setUser, setToken }) {
                 </div>
                 <button type="submit">Login</button>
             </form>
+            {errors.length > 0 && (
+                <section className="errors">
+                    {errors.map((error) => (
+                        <div key={error}>{error}</div>
+                    ))}
+                </section>
+            )}
         </article>
     );
 }

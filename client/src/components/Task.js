@@ -15,18 +15,13 @@ function Task({ task, setTasks, token, user }) {
     }
 
     async function putToggleTaskCompleted() {
-        const res = await fetch(
-            `http://localhost:3001/tasks/${task._id}/toggle-complete`,
-            {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
-        const data = await res.json();
-        console.log(data);
+        await fetch(`http://localhost:3001/tasks/${task._id}/toggle-complete`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
     }
 
     async function deleteTask() {

@@ -57,12 +57,24 @@ main > * {
     font-weight: bold;
 }
 
-.task-list h1 {
+.errors {
+    background-color: #fe282890;
+    border: 3px solid #fe2828;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.task-list h2 {
     color: white;
     text-align: center;
     margin-bottom: 20px;
     font-size: 30px;
     font-weight: bold;
+    text-transform: capitalize;
 }
 
 footer {
