@@ -2,7 +2,7 @@ import Task from './Task';
 import { useEffect, useMemo, useState } from 'react';
 import TaskInput from './TaskInput';
 
-function TaskList({ user, token }) {
+function TaskList({ user }) {
     useEffect(() => {
         if (user !== null) {
             fetchTasks().then((tasks) => setTasks(tasks));
@@ -54,12 +54,11 @@ function TaskList({ user, token }) {
                         key={task._id}
                         task={task}
                         setTasks={setTasks}
-                        token={token}
                         user={user}
                     />
                 ))}
             </ul>
-            <TaskInput setTasks={setTasks} token={token} user={user} />
+            <TaskInput setTasks={setTasks} user={user} />
         </section>
     );
 }

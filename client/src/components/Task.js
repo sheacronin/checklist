@@ -1,6 +1,6 @@
 import '../styles/Task.css';
 
-function Task({ task, setTasks, token, user }) {
+function Task({ task, setTasks, user }) {
     function toggleTaskCompleted() {
         putToggleTaskCompleted();
 
@@ -19,7 +19,6 @@ function Task({ task, setTasks, token, user }) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
             },
         });
     }
@@ -42,7 +41,6 @@ function Task({ task, setTasks, token, user }) {
             }),
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
             },
         });
         const data = await res.json();

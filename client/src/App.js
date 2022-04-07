@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 
 function App() {
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState('');
 
     useEffect(() => {
         fetchCurrentUser().then((user) => setUser(user));
@@ -29,7 +28,7 @@ function App() {
 
     return (
         <div>
-            <Header user={user} setUser={setUser} setToken={setToken} />
+            <Header user={user} setUser={setUser} />
             <main>
                 <Routes>
                     <Route
@@ -38,15 +37,13 @@ function App() {
                             user === null ? (
                                 <Welcome />
                             ) : (
-                                <TaskList user={user} token={token} />
+                                <TaskList user={user} />
                             )
                         }
                     />
                     <Route
                         path="/login"
-                        element={
-                            <Login setUser={setUser} setToken={setToken} />
-                        }
+                        element={<Login setUser={setUser} />}
                     />
                     <Route path="/signup" element={<SignUp />} />
                 </Routes>

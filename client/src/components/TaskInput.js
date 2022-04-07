@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/TaskInput.css';
 
-function TaskInput({ setTasks, token, user }) {
+function TaskInput({ setTasks, user }) {
     const [newTask, setNewTask] = useState('');
 
     function onTaskChange(e) {
