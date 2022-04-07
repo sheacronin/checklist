@@ -5,6 +5,7 @@ require('./config/db');
 require('./config/passport');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const path = require('path');
 const cors = require('cors');
 const compression = require('compression');
 const helmet = require('helmet');
@@ -22,8 +23,16 @@ app.use(cookieParser());
 app.use(cors({ credentials: true, origin: true }));
 app.use(compression());
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
