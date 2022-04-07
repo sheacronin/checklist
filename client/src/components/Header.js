@@ -1,7 +1,7 @@
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
 
-function Header({ user, setUser }) {
+function Header({ user, setUser, isLoading }) {
     function logoutUser() {
         setUser(null);
         fetch('http://localhost:3001/users/logout', {
@@ -16,22 +16,24 @@ function Header({ user, setUser }) {
                 <Link to="/">Checklist</Link>
             </h1>
             <nav>
-                <ul>
-                    {user === null ? (
-                        <>
+                {!isLoading && (
+                    <ul>
+                        {user === null ? (
+                            <>
+                                <li>
+                                    <Link to="/login">Login</Link>
+                                </li>
+                                <li>
+                                    <Link to="/signup">Sign Up</Link>
+                                </li>
+                            </>
+                        ) : (
                             <li>
-                                <Link to="/login">Login</Link>
+                                <button onClick={logoutUser}>Logout</button>
                             </li>
-                            <li>
-                                <Link to="/signup">Sign Up</Link>
-                            </li>
-                        </>
-                    ) : (
-                        <li>
-                            <button onClick={logoutUser}>Logout</button>
-                        </li>
-                    )}
-                </ul>
+                        )}
+                    </ul>
+                )}
             </nav>
         </header>
     );

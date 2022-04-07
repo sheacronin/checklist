@@ -9,9 +9,15 @@ import { useEffect, useState } from 'react';
 
 function App() {
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetchCurrentUser().then((user) => setUser(user));
+        fetchCurrentUser().then((data) => {
+            if (data) {
+                setUser(data.user);
+                setIsLoading(false);
+            }
+        });
 
         async function fetchCurrentUser() {
             const res = await fetch(
@@ -21,26 +27,33 @@ function App() {
                     credentials: 'include',
                 }
             );
+            if (res.status === 401) {
+                setIsLoading(false);
+                return;
+            }
             const data = await res.json();
-            return data.user;
+            return data;
         }
     }, []);
 
+    const indexElement = (() => {
+        if (isLoading) {
+            return <main className="loading">Loading...</main>;
+        }
+
+        if (user === null) {
+            return <Welcome />;
+        } else {
+            return <TaskList user={user} />;
+        }
+    })();
+
     return (
         <div>
-            <Header user={user} setUser={setUser} />
+            <Header user={user} setUser={setUser} isLoading={isLoading} />
             <main>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={
-                            user === null ? (
-                                <Welcome />
-                            ) : (
-                                <TaskList user={user} />
-                            )
-                        }
-                    />
+                    <Route path="/" element={indexElement} />
                     <Route
                         path="/login"
                         element={<Login setUser={setUser} />}
