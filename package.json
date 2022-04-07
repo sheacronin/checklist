@@ -8,7 +8,8 @@
     "scripts": {
         "start": "node ./bin/www",
         "devstart": "nodemon ./bin/www",
-        "serverstart": "DEBUG=server:* npm run devstart"
+        "serverstart": "DEBUG=server:* npm run devstart",
+        "heroku-postbuild": "cd client && npm install && npm run build"
     },
     "dependencies": {
         "bcryptjs": "^2.4.3",
