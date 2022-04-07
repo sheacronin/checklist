@@ -6,17 +6,21 @@ require('./config/passport');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const compression = require('compression');
+const helmet = require('helmet');
 
 const usersRouter = require('./routes/users');
 const tasksRouter = require('./routes/tasks');
 
 const app = express();
 
+app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors({ credentials: true, origin: true }));
+app.use(compression());
 
 app.use('/users', usersRouter);
 app.use('/tasks', tasksRouter);
