@@ -15,7 +15,7 @@ function TaskInput({ setTasks, user }) {
 
         setTasks((prevTasks) => {
             const taskToAdd = {
-                id: data.task._id,
+                _id: data.task._id,
                 text: data.task.text,
                 isCompleted: data.task.isCompleted,
             };
@@ -30,7 +30,6 @@ function TaskInput({ setTasks, user }) {
             method: 'POST',
             body: JSON.stringify({
                 text: newTask,
-                userId: user.id,
             }),
             credentials: 'include',
             headers: {

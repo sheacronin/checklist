@@ -30,7 +30,7 @@ exports.createTask = [
 
                 // Add task to current user
                 User.findByIdAndUpdate(
-                    req.body.userId,
+                    req.user._id,
                     { $push: { tasks: task._id } },
                     { new: true },
                     (err, theUser) => {
@@ -52,7 +52,7 @@ exports.deleteTask = [
 
         // Remove task from User's array
         User.findByIdAndUpdate(
-            req.body.userId,
+            req.user._id,
             { $pull: { tasks: taskId } },
             { new: true },
             (err, theUser) => {

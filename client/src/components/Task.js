@@ -17,6 +17,7 @@ function Task({ task, setTasks, user }) {
     async function putToggleTaskCompleted() {
         await fetch(`http://localhost:3001/tasks/${task._id}/toggle-complete`, {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -36,9 +37,7 @@ function Task({ task, setTasks, user }) {
     async function removeTask() {
         const res = await fetch(`http://localhost:3001/tasks/${task._id}`, {
             method: 'DELETE',
-            body: JSON.stringify({
-                userId: user.id,
-            }),
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
