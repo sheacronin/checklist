@@ -32,7 +32,14 @@ function SignUp() {
             navigate('/login');
         } else {
             const data = await res.json();
-            setErrors((prevErrors) => [...prevErrors, data.message]);
+            if (data.errors) {
+                const errorMessages = data.errors.errors.map(
+                    (error) => error.msg
+                );
+                setErrors((prevErrors) => [...prevErrors, ...errorMessages]);
+            } else {
+                setErrors((prevErrors) => [...prevErrors, data.message]);
+            }
         }
     }
 

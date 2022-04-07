@@ -32,11 +32,14 @@ exports.getCurrentUser = [
 ];
 
 exports.createUser = [
-    body('username', 'Username must be specified')
+    body(
+        'username',
+        'Username must be specified and be at least 3 and no more than 20 characters'
+    )
         .trim()
         .isLength({ min: 3, max: 20 })
         .escape(),
-    body('password', 'You must have a password'),
+    body('password', 'You must have a password').trim().isLength({ min: 1 }),
     body('confirmPassword').custom((value, { req }) => {
         if (value !== req.body.password) {
             throw new Error('Password confirmation does not match password');
