@@ -115,3 +115,9 @@ exports.loginUser = (req, res, next) => {
         });
     })(req, res);
 };
+
+exports.logoutUser = (req, res, next) => {
+    // Remove the token cookie
+    res.cookie('token', '', { httpOnly: true, maxAge: 1 });
+    res.json({ message: 'Token cookie has been destroyed' });
+};

@@ -1,10 +1,13 @@
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
 
-function Header({ user, setUser, setToken }) {
+function Header({ user, setUser }) {
     function logoutUser() {
         setUser(null);
-        setToken('');
+        fetch('http://localhost:3001/users/logout', {
+            method: 'POST',
+            credentials: 'include',
+        });
     }
 
     return (
