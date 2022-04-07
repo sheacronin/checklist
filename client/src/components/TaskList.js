@@ -9,7 +9,9 @@ function TaskList({ user, token }) {
         }
 
         async function fetchTasks() {
-            const res = await fetch(`http://localhost:3001/users/${user.id}`);
+            const res = await fetch(`http://localhost:3001/users/${user.id}`, {
+                credentials: 'include',
+            });
             const data = await res.json();
             return data.user.tasks;
         }

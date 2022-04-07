@@ -5,11 +5,27 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Header from './components/Header';
 import Welcome from './components/Welcome';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState('');
+
+    useEffect(() => {
+        fetchCurrentUser().then((user) => setUser(user));
+
+        async function fetchCurrentUser() {
+            const res = await fetch(
+                'http://localhost:3001/users/current-user',
+                {
+                    method: 'GET',
+                    credentials: 'include',
+                }
+            );
+            const data = await res.json();
+            return data.user;
+        }
+    }, []);
 
     return (
         <div>

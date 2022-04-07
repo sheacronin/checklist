@@ -16,13 +16,14 @@ function Login({ setUser, setToken }) {
                 username: username.value,
                 password: password.value,
             }),
+            credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
         });
         const data = await res.json();
 
         if (res.status === 200) {
             setUser(data.user);
-            setToken(data.token);
+            // setToken(data.token);
             navigate('/');
         } else {
             setErrors((prevErrors) => [...prevErrors, data.info.message]);
