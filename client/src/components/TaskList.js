@@ -9,9 +9,12 @@ function TaskList({ user }) {
         }
 
         async function fetchTasks() {
-            const res = await fetch(`http://localhost:3001/users/${user.id}`, {
-                credentials: 'include',
-            });
+            const res = await fetch(
+                `https://checklist-sc.herokuapp.com/users/${user.id}`,
+                {
+                    credentials: 'include',
+                }
+            );
             const data = await res.json();
             return data.user.tasks;
         }

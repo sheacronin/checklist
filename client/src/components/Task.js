@@ -15,13 +15,16 @@ function Task({ task, setTasks, user }) {
     }
 
     async function putToggleTaskCompleted() {
-        await fetch(`http://localhost:3001/tasks/${task._id}/toggle-complete`, {
-            method: 'PUT',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        await fetch(
+            `https://checklist-sc.herokuapp.com/tasks/${task._id}/toggle-complete`,
+            {
+                method: 'PUT',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
     }
 
     async function deleteTask() {
@@ -35,13 +38,16 @@ function Task({ task, setTasks, user }) {
     }
 
     async function removeTask() {
-        const res = await fetch(`http://localhost:3001/tasks/${task._id}`, {
-            method: 'DELETE',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const res = await fetch(
+            `https://checklist-sc.herokuapp.com/tasks/${task._id}`,
+            {
+                method: 'DELETE',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
         const data = await res.json();
         console.log(data);
     }

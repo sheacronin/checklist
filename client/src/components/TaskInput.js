@@ -26,7 +26,7 @@ function TaskInput({ setTasks, user }) {
     }
 
     async function postTask() {
-        const res = await fetch('http://localhost:3001/tasks/', {
+        const res = await fetch('https://checklist-sc.herokuapp.com/tasks/', {
             method: 'POST',
             body: JSON.stringify({
                 text: newTask,

@@ -18,7 +18,7 @@ function SignUp() {
             return;
         }
 
-        const res = await fetch('http://localhost:3001/users/', {
+        const res = await fetch('https://checklist-sc.herokuapp.com/users/', {
             method: 'POST',
             body: JSON.stringify({
                 username: username.value,

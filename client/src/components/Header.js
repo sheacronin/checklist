@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Header({ user, setUser, isLoading }) {
     function logoutUser() {
         setUser(null);
-        fetch('http://localhost:3001/users/logout', {
+        fetch('https://checklist-sc.herokuapp.com/users/logout', {
             method: 'POST',
             credentials: 'include',
         });
