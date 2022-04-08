@@ -1,5 +1,7 @@
 # Checklist
 
+[Live site](https://checklist-sc.herokuapp.com/).
+
 **Checklist** is a full-stack MERN application that allows users to sign up for an account, log in, and add tasks to their checklist. The tasks are sorted alphabetically and the user can mark them as complete and delete the tasks as they wish.
 
 ## Technology
