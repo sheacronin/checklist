@@ -1,11 +1,12 @@
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import { API_BASE_URL } from './constants';
 import TaskList from './components/TaskList';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Header from './components/Header';
 import Welcome from './components/Welcome';
-import { useEffect, useState } from 'react';
+import './App.css';
 
 function App() {
     const [user, setUser] = useState(null);
@@ -20,13 +21,10 @@ function App() {
         });
 
         async function fetchCurrentUser() {
-            const res = await fetch(
-                'https://checklist-sc.herokuapp.com/users/current-user',
-                {
-                    method: 'GET',
-                    credentials: 'include',
-                }
-            );
+            const res = await fetch(`${API_BASE_URL}/users/current-user`, {
+                method: 'GET',
+                credentials: 'include',
+            });
             if (res.status === 401) {
                 setIsLoading(false);
                 return;

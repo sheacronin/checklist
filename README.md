@@ -1,6 +1,6 @@
 # Checklist
 
-[Live site](https://checklist-sc.herokuapp.com/).
+[Live site](https://checklist-view.onrender.com/).
 
 <img width="1280" alt="Checklist_Screenshot" src="https://user-images.githubusercontent.com/67711077/162473157-f909c884-37d5-4f41-b33d-9d22c9ae4018.png">
 

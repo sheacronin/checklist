@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../constants';
 
 function SignUp() {
     let navigate = useNavigate();
@@ -18,7 +19,7 @@ function SignUp() {
             return;
         }
 
-        const res = await fetch('https://checklist-sc.herokuapp.com/users/', {
+        const res = await fetch(`${API_BASE_URL}/users/`, {
             method: 'POST',
             body: JSON.stringify({
                 username: username.value,

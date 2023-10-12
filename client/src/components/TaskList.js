@@ -1,5 +1,6 @@
-import Task from './Task';
 import { useEffect, useMemo, useState } from 'react';
+import { API_BASE_URL } from '../constants';
+import Task from './Task';
 import TaskInput from './TaskInput';
 
 function TaskList({ user }) {
@@ -9,12 +10,9 @@ function TaskList({ user }) {
         }
 
         async function fetchTasks() {
-            const res = await fetch(
-                `https://checklist-sc.herokuapp.com/users/${user.id}`,
-                {
-                    credentials: 'include',
-                }
-            );
+            const res = await fetch(`${API_BASE_URL}/users/${user.id}`, {
+                credentials: 'include',
+            });
             const data = await res.json();
             return data.user.tasks;
         }

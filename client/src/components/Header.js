@@ -1,10 +1,11 @@
-import '../styles/Header.css';
 import { Link } from 'react-router-dom';
+import { API_BASE_URL } from '../constants';
+import '../styles/Header.css';
 
 function Header({ user, setUser, isLoading }) {
     function logoutUser() {
         setUser(null);
-        fetch('https://checklist-sc.herokuapp.com/users/logout', {
+        fetch(`${API_BASE_URL}/users/logout`, {
             method: 'POST',
             credentials: 'include',
         });

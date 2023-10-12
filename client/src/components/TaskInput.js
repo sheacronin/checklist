@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_BASE_URL } from '../constants';
 import '../styles/TaskInput.css';
 
 function TaskInput({ setTasks, user }) {
@@ -26,7 +27,7 @@ function TaskInput({ setTasks, user }) {
     }
 
     async function postTask() {
-        const res = await fetch('https://checklist-sc.herokuapp.com/tasks/', {
+        const res = await fetch(`${API_BASE_URL}/tasks/`, {
             method: 'POST',
             body: JSON.stringify({
                 text: newTask,
