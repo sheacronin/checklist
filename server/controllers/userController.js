@@ -109,7 +109,12 @@ exports.loginUser = (req, res, next) => {
                 expiresIn: '1h',
             });
 
-            res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+            res.cookie('token', token, {
+                httpOnly: true,
+                maxAge: 3600000,
+                sameSite: false,
+                secure: true,
+            });
 
             return res.json({
                 user: { id: user._id, username: user.username },
@@ -121,6 +126,11 @@ exports.loginUser = (req, res, next) => {
 
 exports.logoutUser = (req, res, next) => {
     // Remove the token cookie
-    res.cookie('token', '', { httpOnly: true, maxAge: 1 });
+    res.cookie('token', '', {
+        httpOnly: true,
+        maxAge: 1,
+        sameSite: false,
+        secure: true,
+    });
     res.json({ message: 'Token cookie has been destroyed' });
 };

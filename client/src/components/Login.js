@@ -24,7 +24,6 @@ function Login({ setUser }) {
 
         if (res.status === 200) {
             setUser(data.user);
-            // setToken(data.token);
             navigate('/');
         } else {
             setErrors((prevErrors) => [...prevErrors, data.info.message]);
